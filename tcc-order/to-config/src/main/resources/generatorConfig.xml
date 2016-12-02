@@ -14,9 +14,9 @@
         <!--<commentGenerator type="org.mybatis.generator.internal.MyCommentGenerator"/>-->
         <!--数据库链接URL，用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://218.244.135.116/sxc?characterEncoding=utf8"
-                        userId="sxc"
-                        password="123456" />
+                        connectionURL="jdbc:mysql://localhost/tcc_ord?characterEncoding=utf8"
+                        userId="root"
+                        password="1234" />
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
@@ -36,6 +36,11 @@
         <!-- 要生成哪些表-->
         <!--<table schema="sxc" tableName="market_survey_task" domainObjectName="MarketSurveyTask">-->
             <!--<generatedKey column="id" sqlStatement="MySql" identity="true" />-->
+        <!--</table>-->
+        <!--<table schema="tcc_ord" tableName="ord_order" domainObjectName="Order">-->
+            <!--<generatedKey column="ORDER_ID" sqlStatement="MySql" identity="true" />-->
+        <!--</table><table schema="tcc_ord" tableName="ord_order" domainObjectName="Order">-->
+            <!--<generatedKey column="ORDER_ID" sqlStatement="MySql" identity="true" />-->
         <!--</table>-->
     </context>
 </generatorConfiguration>

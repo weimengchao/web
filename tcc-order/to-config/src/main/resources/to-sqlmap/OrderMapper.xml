@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sxc.to.dao.mapper.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.sxc.to.domain.model.Order" >
+    <id column="ORDER_ID" property="orderId" jdbcType="INTEGER" />
+    <result column="PAYER_USER_ID" property="payerUserId" jdbcType="INTEGER" />
+    <result column="PAYEE_USER_ID" property="payeeUserId" jdbcType="INTEGER" />
+    <result column="RED_PACKET_PAY_AMOUNT" property="redPacketPayAmount" jdbcType="DECIMAL" />
+    <result column="CAPITAL_PAY_AMOUNT" property="capitalPayAmount" jdbcType="DECIMAL" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="MERCHANT_ORDER_NO" property="merchantOrderNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ORDER_ID, PAYER_USER_ID, PAYEE_USER_ID, RED_PACKET_PAY_AMOUNT, CAPITAL_PAY_AMOUNT, 
+    STATUS, MERCHANT_ORDER_NO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sxc.to.domain.model.OrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ord_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ord_order
+    where ORDER_ID = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ord_order
+    where ORDER_ID = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sxc.to.domain.model.OrderExample" >
+    delete from ord_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sxc.to.domain.model.Order" >
+    <selectKey resultType="java.lang.Integer" keyProperty="orderId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into ord_order (PAYER_USER_ID, PAYEE_USER_ID, RED_PACKET_PAY_AMOUNT, 
+      CAPITAL_PAY_AMOUNT, STATUS, MERCHANT_ORDER_NO
+      )
+    values (#{payerUserId,jdbcType=INTEGER}, #{payeeUserId,jdbcType=INTEGER}, #{redPacketPayAmount,jdbcType=DECIMAL}, 
+      #{capitalPayAmount,jdbcType=DECIMAL}, #{status,jdbcType=VARCHAR}, #{merchantOrderNo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sxc.to.domain.model.Order" >
+    <selectKey resultType="java.lang.Integer" keyProperty="orderId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into ord_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="payerUserId != null" >
+        PAYER_USER_ID,
+      </if>
+      <if test="payeeUserId != null" >
+        PAYEE_USER_ID,
+      </if>
+      <if test="redPacketPayAmount != null" >
+        RED_PACKET_PAY_AMOUNT,
+      </if>
+      <if test="capitalPayAmount != null" >
+        CAPITAL_PAY_AMOUNT,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="merchantOrderNo != null" >
+        MERCHANT_ORDER_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="payerUserId != null" >
+        #{payerUserId,jdbcType=INTEGER},
+      </if>
+      <if test="payeeUserId != null" >
+        #{payeeUserId,jdbcType=INTEGER},
+      </if>
+      <if test="redPacketPayAmount != null" >
+        #{redPacketPayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="capitalPayAmount != null" >
+        #{capitalPayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantOrderNo != null" >
+        #{merchantOrderNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sxc.to.domain.model.OrderExample" resultType="java.lang.Integer" >
+    select count(*) from ord_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ord_order
+    <set >
+      <if test="record.orderId != null" >
+        ORDER_ID = #{record.orderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.payerUserId != null" >
+        PAYER_USER_ID = #{record.payerUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.payeeUserId != null" >
+        PAYEE_USER_ID = #{record.payeeUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.redPacketPayAmount != null" >
+        RED_PACKET_PAY_AMOUNT = #{record.redPacketPayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.capitalPayAmount != null" >
+        CAPITAL_PAY_AMOUNT = #{record.capitalPayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.merchantOrderNo != null" >
+        MERCHANT_ORDER_NO = #{record.merchantOrderNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ord_order
+    set ORDER_ID = #{record.orderId,jdbcType=INTEGER},
+      PAYER_USER_ID = #{record.payerUserId,jdbcType=INTEGER},
+      PAYEE_USER_ID = #{record.payeeUserId,jdbcType=INTEGER},
+      RED_PACKET_PAY_AMOUNT = #{record.redPacketPayAmount,jdbcType=DECIMAL},
+      CAPITAL_PAY_AMOUNT = #{record.capitalPayAmount,jdbcType=DECIMAL},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      MERCHANT_ORDER_NO = #{record.merchantOrderNo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sxc.to.domain.model.Order" >
+    update ord_order
+    <set >
+      <if test="payerUserId != null" >
+        PAYER_USER_ID = #{payerUserId,jdbcType=INTEGER},
+      </if>
+      <if test="payeeUserId != null" >
+        PAYEE_USER_ID = #{payeeUserId,jdbcType=INTEGER},
+      </if>
+      <if test="redPacketPayAmount != null" >
+        RED_PACKET_PAY_AMOUNT = #{redPacketPayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="capitalPayAmount != null" >
+        CAPITAL_PAY_AMOUNT = #{capitalPayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantOrderNo != null" >
+        MERCHANT_ORDER_NO = #{merchantOrderNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ORDER_ID = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sxc.to.domain.model.Order" >
+    update ord_order
+    set PAYER_USER_ID = #{payerUserId,jdbcType=INTEGER},
+      PAYEE_USER_ID = #{payeeUserId,jdbcType=INTEGER},
+      RED_PACKET_PAY_AMOUNT = #{redPacketPayAmount,jdbcType=DECIMAL},
+      CAPITAL_PAY_AMOUNT = #{capitalPayAmount,jdbcType=DECIMAL},
+      STATUS = #{status,jdbcType=VARCHAR},
+      MERCHANT_ORDER_NO = #{merchantOrderNo,jdbcType=VARCHAR}
+    where ORDER_ID = #{orderId,jdbcType=INTEGER}
+  </update>
+</mapper>
