@@ -159,7 +159,7 @@
   </dependencies>
 
   <build>
-    <finalName>testweb</finalName>
+    <finalName>erp</finalName>
 
     <plugins>
       <plugin>
