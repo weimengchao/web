@@ -5,7 +5,7 @@
   <artifactId>erp</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>testweb Maven Webapp</name>
+  <name>erp</name>
   <url>http://maven.apache.org</url>
 
   <properties>
