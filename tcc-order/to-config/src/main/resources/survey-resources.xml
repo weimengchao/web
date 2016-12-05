@@ -6,8 +6,8 @@
        default-autowire="byName">
 
 
-    <import resource="classpath:bean/to-spring-persistence.xml"/>
     <import resource="classpath:bean/to-application-config.xml"/>
+    <import resource="classpath:bean/to-spring-persistence.xml"/>
 
 
 </beans>
