@@ -30,4 +30,9 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> queryByExample(OrderQueryDO queryDO) {
         return orderManager.selectByExample(queryDO);
     }
+
+    @Override
+    public int insertSelective(Order record) {
+        return orderManager.insertSelective(record);
+    }
 }

@@ -29,4 +29,12 @@ public class OrderServiceTest extends BaseTest{
         List<Order> orders = orderService.queryByExample(new OrderQueryDO());
         Assert.notNull(orders);
     }
+
+    @Test
+    public void testInsertSelective() {
+        Order order = new Order();
+        order.setPayerUserId(1);
+        int nums = orderService.insertSelective(order);
+        Assert.isTrue(nums == 1);
+    }
 }

@@ -18,4 +18,6 @@ import java.util.List;
  */
 public interface OrderService {
     List<Order> queryByExample(OrderQueryDO queryDO);
+
+    int insertSelective(Order record);
 }

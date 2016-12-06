@@ -35,6 +35,11 @@ public class OrderManagerImpl implements OrderManager {
         return orderMapper.selectByExample(example);
     }
 
+    @Override
+    public int insertSelective(Order record) {
+        return orderMapper.insertSelective(record);
+    }
+
     private OrderExample wrapOrderExample(OrderQueryDO queryDO) {
         OrderExample example = new OrderExample();
         OrderExample.Criteria criteria = example.createCriteria();

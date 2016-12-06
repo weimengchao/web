@@ -17,6 +17,12 @@
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>com.sxc.to</groupId>
+      <artifactId>to-client</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+
     <!-- word分词 -->
     <dependency>
       <groupId>org.apdplat</groupId>

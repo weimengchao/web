@@ -15,6 +15,7 @@
                 <value>classpath:test-local.properties</value>
                 <value>classpath:config.properties</value>
                 <value>classpath:kafka.properties</value>
+                <value>classpath:log4j.properties</value>
             </list>
         </property>
     </bean>

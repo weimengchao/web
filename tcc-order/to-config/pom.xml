@@ -8,12 +8,13 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>to-config</artifactId>
     <packaging>jar</packaging>
     <version>${project.parent.version}</version>
 
     <properties>
+        <!--  编译jdk版本  -->
+        <jdk.version>1.6</jdk.version>
         <project.build.encoding>UTF-8</project.build.encoding>
         <!--  MyBatis Generator  -->
         <!--  Java接口和实体类  -->
@@ -24,8 +25,6 @@
         <!--  XML生成路径  -->
         <targetResourcesProject>${project.basedir}/src/main/resources</targetResourcesProject>
         <targetResourcesPackage>to-sqlmap</targetResourcesPackage>
-        <!--  编译jdk版本  -->
-        <jdk.version>1.6</jdk.version>
     </properties>
 
     <dependencies>
