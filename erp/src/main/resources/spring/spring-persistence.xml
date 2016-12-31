@@ -102,5 +102,33 @@
         <aop:pointcut id="targetMethod" expression="execution(* com.sxc.testweb.*.impl.*Impl.*(..))" />
         <aop:advisor advice-ref="txAdvice" pointcut-ref="targetMethod" />
     </aop:config>
+
+	<!-- tcc分布式事务 -->
+	<bean id="tccDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		  destroy-method="close" lazy-init="false">
+		<property name="driverClass" value="${jdbc.driverClassName}"/>
+		<property name="jdbcUrl" value="${tcc.jdbc.url}"/>
+		<property name="user" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		<property name="initialPoolSize" value="${c3p0.initialPoolSize}"/>
+		<property name="minPoolSize" value="${c3p0.minPoolSize}"/>
+		<property name="maxPoolSize" value="${c3p0.maxPoolSize}"/>
+		<property name="acquireIncrement" value="${c3p0.acquireIncrement}"/>
+		<property name="maxIdleTime" value="${c3p0.maxIdleTime}"/>
+		<property name="checkoutTimeout" value="${c3p0.checkoutTimeout}"/>
+	</bean>
+
+	<bean id="transactionRepository"
+		  class="org.mengyun.tcctransaction.spring.repository.SpringJdbcTransactionRepository">
+		<property name="dataSource" ref="tccDataSource"/>
+		<property name="domain" value="CAPITAL"/>
+		<property name="tbSuffix" value="_CAP"/>
+	</bean>
+
+	<bean class="org.mengyun.tcctransaction.spring.recover.DefaultRecoverConfig">
+		<property name="maxRetryCount" value="30"/>
+		<property name="recoverDuration" value="120"/>
+		<property name="cronExpression" value="0 */1 * * * ?"/>
+	</bean>
      
 </beans>

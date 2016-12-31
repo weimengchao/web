@@ -19,6 +19,39 @@
   <dependencies>
     <dependency>
       <groupId>com.sxc.to</groupId>
+      <artifactId>to-core</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.sxc.to</groupId>
+      <artifactId>to-common</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+
+    <!-- tcc分布式事务 -->
+    <dependency>
+      <groupId>org.mengyun</groupId>
+      <artifactId>tcc-transaction-spring</artifactId>
+      <version>1.1.5</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-context</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-aop</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.mchange</groupId>
+      <artifactId>c3p0</artifactId>
+      <version>0.9.5-pre10</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.sxc.to</groupId>
       <artifactId>to-client</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>

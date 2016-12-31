@@ -2,6 +2,7 @@ package com.sxc.to.service;
 
 import com.sxc.to.domain.model.Order;
 import com.sxc.to.domain.query.OrderQueryDO;
+import org.apache.commons.dbcp.managed.TransactionContext;
 
 import java.util.List;
 
@@ -19,5 +20,5 @@ import java.util.List;
 public interface OrderService {
     List<Order> queryByExample(OrderQueryDO queryDO);
 
-    int insertSelective(Order record);
+    int insertSelective(TransactionContext transactionContext, Order record);
 }

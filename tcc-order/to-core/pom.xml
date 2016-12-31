@@ -12,6 +12,7 @@
     <artifactId>to-core</artifactId>
 
     <dependencies>
+
         <dependency>
             <groupId>com.sxc.to</groupId>
             <artifactId>to-common</artifactId>
@@ -85,6 +86,11 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mengyun</groupId>
+            <artifactId>tcc-transaction-core</artifactId>
+            <version>RELEASE</version>
         </dependency>
     </dependencies>
 

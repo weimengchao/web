@@ -1,5 +1,9 @@
 package com.sxc.testweb.service;
 
+import com.sxc.testweb.domain.User;
+import com.sxc.to.domain.dto.TccDTO;
+import org.mengyun.tcctransaction.api.TransactionContext;
+
 /**
  * Description: UserService
  *
@@ -15,5 +19,11 @@ package com.sxc.testweb.service;
  * 2016/6/1       weimengchao    1.0       1.0 Version
  */
 public interface UserService {
-    public boolean login(String username, String password);
+    boolean login(String username, String password);
+
+    boolean tcc(TccDTO tccDTO);
+
+    boolean insertSelective(TransactionContext transactionContext, User user);
+
+
 }

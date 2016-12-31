@@ -44,4 +44,12 @@ public class UserController {
         return mv;
 
     }
+
+    @RequestMapping("/tcc")
+    public String tcc(HttpServletRequest request, HttpServletResponse response) {
+
+
+        return "success";
+
+    }
 }

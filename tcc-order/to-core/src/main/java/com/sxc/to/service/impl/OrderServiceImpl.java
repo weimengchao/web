@@ -1,9 +1,11 @@
 package com.sxc.to.service.impl;
 
 import com.sxc.to.dao.manager.OrderManager;
+import com.sxc.to.domain.dto.TccDTO;
 import com.sxc.to.service.OrderService;
 import com.sxc.to.domain.model.Order;
 import com.sxc.to.domain.query.OrderQueryDO;
+import org.apache.commons.dbcp.managed.TransactionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +33,9 @@ public class OrderServiceImpl implements OrderService {
         return orderManager.selectByExample(queryDO);
     }
 
+    @Compensable(confirmMethod = "confirmInsertSelective", cancelMethod = "cancelInsertSelective")
     @Override
-    public int insertSelective(Order record) {
+    public int insertSelective(TransactionContext transactionContext, Order record) {
         return orderManager.insertSelective(record);
     }
 }
